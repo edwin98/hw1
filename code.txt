@@ -1,0 +1,101 @@
+img=imread('7.bmp')
+
+
+img2=imread('lena.bmp');
+img2=double(img2);
+for i=1:8
+    subplot(2,4,i)
+    imshow(img2,[0,2^(9-i)-1])
+    img2=floor(img2./2);
+end
+
+
+img2=imread('lena.bmp');
+img2=double(img2);
+img2_mean=mean2(img2)
+img2_std=std2(img2)
+img2_std*img2_std
+
+
+img2=imread('lena.bmp');
+figure(1)
+imshow(img2);
+img2_1=imresize(img2,[2048 2048],'nearest');
+figure(2)
+imshow(img2_1);
+img2_2=imresize(img2,[2048 2048],'bilinear');
+figure(3)
+imshow(img2_2);
+img2_3=imresize(img2,[2048 2048],'bicubic');
+figure(4)
+imshow(img2_3);
+
+
+
+
+
+img2=imread('lena.bmp');
+img3=imread('elain.bmp');
+T1=[1 1.5 0;0 1 0;0 0 1];
+tform=affine2d(T1);
+img2p=imwarp(img2,tform);
+img3p=imwarp(img3,tform);
+
+figure(1)
+subplot(2,2,1)
+imshow(img2)
+img2p_1=imresize(img2p,[2048 2048],'nearest');
+subplot(2,2,2)
+imshow(img2p_1);
+img2p_2=imresize(img2p,[2048 2048],'bilinear');
+subplot(2,2,3)
+imshow(img2p_2);
+img2p_3=imresize(img2p,[2048 2048],'bicubic');
+subplot(2,2,4)
+imshow(img2p_3);
+
+
+figure(2)
+subplot(2,2,1)
+imshow(img3)
+img3p_1=imresize(img3p,[2048 2048],'nearest');
+subplot(2,2,2)
+imshow(img3p_1);
+img3p_2=imresize(img3p,[2048 2048],'bilinear');
+subplot(2,2,3)
+imshow(img2p_2);
+img3p_3=imresize(img3p,[2048 2048],'bicubic');
+subplot(2,2,4)
+imshow(img3p_3);
+
+T2=[cosd(30) sind(30) 0;-sind(30) cos(30) 0;0 0 1];
+tform=affine2d(T2);
+img2r=imwarp(img2,tform);
+img3r=imwarp(img3,tform);
+
+figure(3)
+subplot(2,2,1)
+imshow(img2)
+img2r_1=imresize(img2r,[2048 2048],'nearest');
+subplot(2,2,2)
+imshow(img2r_1);
+img2r_2=imresize(img2r,[2048 2048],'bilinear');
+subplot(2,2,3)
+imshow(img2r_2);
+img2r_3=imresize(img2r,[2048 2048],'bicubic');
+subplot(2,2,4)
+imshow(img2r_3);
+
+
+figure(4)
+subplot(2,2,1)
+imshow(img3)
+img3r_1=imresize(img3r,[2048 2048],'nearest');
+subplot(2,2,2)
+imshow(img3r_1);
+img3r_2=imresize(img3r,[2048 2048],'bilinear');
+subplot(2,2,3)
+imshow(img2r_2);
+img3r_3=imresize(img3r,[2048 2048],'bicubic');
+subplot(2,2,4)
+imshow(img3r_3);
